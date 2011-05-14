@@ -83,7 +83,6 @@
 
 void msm_init_irq(void);
 void msm_init_gpio(void);
-void msm_init_pmic_vibrator(void);
 void config_buzz_camera_on_gpios(void);
 void config_buzz_camera_off_gpios(void);
 #ifdef CONFIG_MICROP_COMMON
@@ -1220,7 +1219,7 @@ static void __init buzz_init(void)
 #endif
 
 	msm_add_mem_devices(&pmem_setting);
-	msm_init_pmic_vibrator();
+	msm_init_pmic_vibrator(3000);
 #ifdef CONFIG_MICROP_COMMON
 	buzz_microp_init();
 #endif

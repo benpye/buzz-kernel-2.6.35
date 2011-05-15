@@ -35,7 +35,6 @@
 #include "proc_comm.h"
 #include "acpuclock.h"
 #include <asm/mach-types.h>
-#include <mach/socinfo.h>
 
 #define A11S_CLK_CNTL_ADDR (MSM_CSR_BASE + 0x100)
 #define A11S_CLK_SEL_ADDR (MSM_CSR_BASE + 0x104)
@@ -579,17 +578,6 @@ static void __init acpuclk_init(void)
 	/*
 	 * Determine the rate of ACPU clock
 	 */
-		if (socinfo_init() < 0)
-			BUG();
-
-		if ((SOCINFO_VERSION_MAJOR(socinfo_get_version()) > 1)
-			|| ((SOCINFO_VERSION_MAJOR(socinfo_get_version()) == 1)
-			&& (SOCINFO_VERSION_MINOR(socinfo_get_version()) >= 3)))
-			{
-				printk("7x27-t write A11S_CLK_CNTL_ADDR =0x2220\n");
-				writel(0x2220,A11S_CLK_CNTL_ADDR);
-			}
-
 	if (!(readl(A11S_CLK_SEL_ADDR) & 0x01)) { /* CLK_SEL_SRC1N0 */
 		/* CLK_SRC0_SEL */
 		sel = (readl(A11S_CLK_CNTL_ADDR) >> 12) & 0x7;
@@ -688,25 +676,7 @@ static void __init acpu_freq_tbl_fixup(void)
 
 	/* Select the right table to use. */
 	for (lst = acpu_freq_tbl_list; lst->tbl != 0; lst++) {
-		if ((lst->machine == MACH_TYPE_CHACHA)||(lst->machine == MACH_TYPE_ICONG)){
-				if (socinfo_init() < 0)
-					BUG();
-				if ((SOCINFO_VERSION_MAJOR(socinfo_get_version()) > 1)
-					|| ((SOCINFO_VERSION_MAJOR(socinfo_get_version()) == 1)
-					&& (SOCINFO_VERSION_MINOR(socinfo_get_version()) >= 3)))
-					{
-						acpu_freq_tbl = lst->tbl;
-						freq_table = lst->freq_tbl;
-						break;
-					}
-				else {
-					lst++;
-					acpu_freq_tbl = lst->tbl;
-					freq_table = lst->freq_tbl;
-					break;
-				}
-			}
-		else if (lst->machine == machine_arch_type) {
+		if (lst->machine == machine_arch_type) {
 			acpu_freq_tbl = lst->tbl;
 			freq_table = lst->freq_tbl;
 			break;

@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.35.13
-# Wed May 18 02:17:02 2011
+# Wed May 18 02:50:25 2011
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -1772,6 +1772,20 @@ CONFIG_YAFFS_SHORT_NAMES_IN_RAM=y
 # CONFIG_ROMFS_FS is not set
 # CONFIG_SYSV_FS is not set
 # CONFIG_UFS_FS is not set
+CONFIG_AUFS_FS=y
+CONFIG_AUFS_BRANCH_MAX_127=y
+# CONFIG_AUFS_BRANCH_MAX_511 is not set
+# CONFIG_AUFS_BRANCH_MAX_1023 is not set
+# CONFIG_AUFS_BRANCH_MAX_32767 is not set
+CONFIG_AUFS_SBILIST=y
+# CONFIG_AUFS_HNOTIFY is not set
+# CONFIG_AUFS_RDU is not set
+# CONFIG_AUFS_SP_IATTR is not set
+# CONFIG_AUFS_SHWH is not set
+# CONFIG_AUFS_BR_RAMFS is not set
+# CONFIG_AUFS_BR_FUSE is not set
+CONFIG_AUFS_BDEV_LOOP=y
+# CONFIG_AUFS_DEBUG is not set
 CONFIG_NETWORK_FILESYSTEMS=y
 # CONFIG_NFS_FS is not set
 # CONFIG_NFSD is not set

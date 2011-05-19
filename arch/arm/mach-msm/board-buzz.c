@@ -168,7 +168,7 @@ static struct htc_headset_mgr_platform_data htc_headset_mgr_data = {
 
 static struct htc_battery_platform_data htc_battery_pdev_data = {
 	.guage_driver = GUAGE_MODEM,
-	.charger = SWITCH_CHARGER_TPS65200,
+	.charger = LINEAR_CHARGER,
 	.m2a_cable_detect = 1,
 };
 
